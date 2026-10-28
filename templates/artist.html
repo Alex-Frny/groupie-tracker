@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Retrouve toutes les infos de tes artistes préférés en un clic!">
+    <title>Groupie Tracker</title>
+    <link rel="stylesheet" href="/static/static.css">
+</head>
+<body>
+<header class="header">
+    <a href="/" class="logo"><h1>Groupie Tracker</h1></a>
+    <p>Retrouve toutes les infos de tes artistes préférés.</p>
+</header>
+<main class="container">
+    <a href="/" class="back-link">← Retour à tous les artistes</a>
+    <section class="artist-details">
+        <div>
+            <img src="{{.Artist.Image}}" alt="{{.Artist.Name}}" class="artist-image">
+        </div>
+        <div class="artist-info">
+            <h1>{{.Artist.Name}}</h1>
+            <p><strong>Année de création :</strong>{{.Artist.CreationDate}}</p>
+            <p><strong>Premier album :</strong>{{.Artist.FirstAlbum}}</p>
+            <h2>Membres</h2>
+            <ul class="member-list">
+                {{range .Artist.Members}}
+                    <li>{{.}}</li>
+                {{end}}
+            </ul>
+        </div>
+    </section>
+    <section class="concert-section">
+        <h2>Concerts</h2>
+        <div class="concert-grid">
+            {{range $location, $dates := .Relation.DatesLocations}}
+                <article class="concert-card">
+                    <h2>{{$location}}</h2>
+                    <ul>
+                    {{range $date := $dates}}
+                        <li>Date: {{ $date }}</li>
+                    {{end}}
+                    </ul>
+                </article>
+            {{end}}
+        </div>
+    </section>
+</main>
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-project">
+            <h3>Groupie Tracker</h3>
+            <p>Projet réalisé dans le cadre de Zone01 Normandie.</p>
+        </div>
+        <div class="footer-team">
+            <p class="team-title">Réalisé par</p>
+            <p class="team-members">Pierre Basley • Alexis Fourny • Leo Giffard</p>
+        </div>
+        <div class="footer-api">
+            <a href="https://groupietrackers.herokuapp.com/api" target="_blank" rel="noopener noreferrer">API Groupie Tracker</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2026 Groupie Tracker</p>
+    </div>
+</footer>
+</body>
+</html>

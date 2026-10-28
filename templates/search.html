@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Retrouve toutes les infos de tes artistes préférés en un clic!">
+    <title>Recherche - Groupie Tracker</title>
+    <link rel="stylesheet" href="/static/static.css">
+</head>
+<body>
+<header class="header">
+    <a href="/" class="logo"><h1>Groupie Tracker</h1></a>
+    <p>Retrouve toutes les infos de tes artistes préférés.</p>
+    <form action="/search" method="GET" class="search-form">
+        <div class="search-wrapper">
+            <input
+                type="search"
+                id="search"
+                name="name"
+                minlength="1"
+                maxlength="20"
+                placeholder="Queen, NWA, Gorillaz..."
+                required>
+            <button type="submit">Rechercher</button>
+        </div>
+    </form>
+</header>
+<main class="container">
+    <a href="/" class="back-link">← Retour à tous les artistes</a>
+    <section class="search-results">
+        <h1>Résultats de votre recherche</h1>
+        <div class="artist-grid">
+            {{range .}}
+                <a href="/artist/?id={{.ID}}" class="artist-card">
+                    <img src="{{.Image}}" alt="{{.Name}}">
+                    <h2>{{.Name}}</h2>
+                    <p>Depuis {{.CreationDate}}</p>
+                </a>
+            {{end}}
+        </div>
+    </section>
+</main>
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-project">
+            <h3>Groupie Tracker</h3>
+            <p>Projet réalisé dans le cadre de Zone01 Normandie.</p>
+        </div>
+        <div class="footer-team">
+            <p class="team-title">Réalisé par</p>
+            <p class="team-members">Pierre Basley • Alexis Fourny • Leo Giffard</p>
+        </div>
+        <div class="footer-api">
+            <a href="https://groupietrackers.herokuapp.com/api" target="_blank" rel="noopener noreferrer">API Groupie Tracker</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2026 Groupie Tracker</p>
+    </div>
+</footer>
+</body>
+</html>
